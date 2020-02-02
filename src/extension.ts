@@ -42,6 +42,7 @@ function stop() {
 function sendSelection(editor: TextEditor) {
   let sel = editor.document.getText(editor.selection);
   foxDotProc.stdin.write(sel + "\n\n");
+  vscode.window.showInformationMessage(">>> " + sel);
   editor.selections = editor.selections.map(
     s => new Selection(s.active, s.active)
   );
