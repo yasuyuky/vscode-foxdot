@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import { TextEditor } from "vscode";
+import { TextEditor, Selection } from "vscode";
 import { spawn, ChildProcess } from "child_process";
 
 let foxDotProc: ChildProcess;
@@ -43,6 +43,9 @@ function sendSelection(editor: TextEditor) {
   let sel = editor.document.getText(editor.selection);
   foxDotProc.stdin.write(sel);
   foxDotProc.stdin.write("\n\n");
+  editor.selections = editor.selections.map(
+    s => new Selection(s.active, s.active)
+  );
 }
 
 export function deactivate() {
