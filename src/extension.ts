@@ -41,8 +41,7 @@ function stop() {
 
 function sendSelection(editor: TextEditor) {
   let sel = editor.document.getText(editor.selection);
-  foxDotProc.stdin.write(sel);
-  foxDotProc.stdin.write("\n\n");
+  foxDotProc.stdin.write(sel + "\n\n");
   editor.selections = editor.selections.map(
     s => new Selection(s.active, s.active)
   );
