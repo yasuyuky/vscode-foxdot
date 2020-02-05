@@ -28,6 +28,12 @@
         "title": "Send Region to FoxDot"
       }
     ],
+    "keybindings": [
+      {
+        "key": "cmd+shift+enter",
+        "command": "foxdot.sendSelection"
+      }
+    ],
     "configuration": [
       {
         "title": "FoxDot Configuration",
