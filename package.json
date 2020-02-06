@@ -24,6 +24,10 @@
         "title": "Stop FoxDot"
       },
       {
+        "command": "foxdot.restart",
+        "title": "Restart FoxDot"
+      },
+      {
         "command": "foxdot.sendSelection",
         "title": "Send Region to FoxDot"
       }
