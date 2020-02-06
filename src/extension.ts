@@ -8,7 +8,8 @@ export function activate(context: vscode.ExtensionContext) {
   let commands = new Map<string, (...args: any[]) => any>([
     ["foxdot.start", start],
     ["foxdot.sendSelection", sendSelection],
-    ["foxdot.stop", stop]
+    ["foxdot.stop", stop],
+    ["foxdot.restart", restart]
   ]);
 
   commands.forEach((func, key) =>
@@ -37,6 +38,11 @@ function start() {
 
 function stop() {
   foxDotProc.kill();
+}
+
+function restart() {
+  stop();
+  start();
 }
 
 function sendSelection(editor: TextEditor) {
