@@ -10,7 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:foxdot.start"
+    "onCommand:foxdot.start",
+    "onCommand:foxdot.restart"
   ],
   "main": "./out/extension.js",
   "contributes": {
