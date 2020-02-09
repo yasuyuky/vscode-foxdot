@@ -1,8 +1,14 @@
 import * as vscode from "vscode";
-import { TextEditor, Selection } from "vscode";
+import {
+  TextEditor,
+  Selection,
+  StatusBarItem,
+  StatusBarAlignment
+} from "vscode";
 import { spawn, ChildProcess } from "child_process";
 
 let foxDotProc: ChildProcess;
+let foxDotStatus: StatusBarItem;
 
 export function activate(context: vscode.ExtensionContext) {
   let commands = new Map<string, (...args: any[]) => any>([
@@ -34,8 +40,12 @@ function start() {
   foxDotProc.on("close", code => {
     if (code) vscode.window.showErrorMessage(`FoxDot has exited: ${code}.`);
     else vscode.window.showInformationMessage(`FoxDot has stopped.`);
+    foxDotStatus?.dispose();
   });
   vscode.window.showInformationMessage("FoxDot has started!");
+  foxDotStatus = vscode.window.createStatusBarItem(StatusBarAlignment.Left, 10);
+  foxDotStatus.text = "FoxDot >>";
+  foxDotStatus.show();
 }
 
 function stop() {
