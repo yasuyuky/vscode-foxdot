@@ -45,6 +45,7 @@ function start() {
   vscode.window.showInformationMessage("FoxDot has started!");
   foxDotStatus = vscode.window.createStatusBarItem(StatusBarAlignment.Left, 10);
   foxDotStatus.text = "FoxDot >>";
+  foxDotStatus.command = "foxdot.record";
   foxDotStatus.show();
 }
 
@@ -59,11 +60,13 @@ function restart() {
 
 function record() {
   foxDotProc.stdin.write("Server.record()\n\n");
+  foxDotStatus.command = "foxdot.stopRecording";
   vscode.window.showInformationMessage("Start Recording");
 }
 
 function stopRecording() {
   foxDotProc.stdin.write("Server.stopRecording()\n\n");
+  foxDotStatus.command = "foxdot.record";
   vscode.window.showInformationMessage("Stop Recording");
 }
 
