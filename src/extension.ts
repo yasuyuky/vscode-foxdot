@@ -9,7 +9,9 @@ export function activate(context: vscode.ExtensionContext) {
     ["foxdot.start", start],
     ["foxdot.sendSelection", sendSelection],
     ["foxdot.stop", stop],
-    ["foxdot.restart", restart]
+    ["foxdot.restart", restart],
+    ["foxdot.record", record],
+    ["foxdot.stopRecording", stopRecording]
   ]);
 
   commands.forEach((func, key) =>
@@ -43,6 +45,16 @@ function stop() {
 function restart() {
   stop();
   start();
+}
+
+function record() {
+  foxDotProc.stdin.write("Server.record()\n\n");
+  vscode.window.showInformationMessage("Start Recording");
+}
+
+function stopRecording() {
+  foxDotProc.stdin.write("Server.stopRecording()\n\n");
+  vscode.window.showInformationMessage("Stop Recording");
 }
 
 function sendSelection(editor: TextEditor) {
