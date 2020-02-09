@@ -1,6 +1,7 @@
 {
   "name": "vscode-foxdot",
   "displayName": "foxdot",
+  "publisher": "yasuyuky",
   "description": "Extension for FoxDot",
   "version": "0.0.1",
   "engines": {
