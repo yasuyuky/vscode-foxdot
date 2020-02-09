@@ -29,6 +29,14 @@
         "title": "Restart FoxDot"
       },
       {
+        "command": "foxdot.record",
+        "title": "FoxDot: Record"
+      },
+      {
+        "command": "foxdot.stopRecording",
+        "title": "FoxDot: Stop Recording"
+      },
+      {
         "command": "foxdot.sendSelection",
         "title": "Send Region to FoxDot"
       }
