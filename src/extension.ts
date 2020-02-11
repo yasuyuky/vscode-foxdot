@@ -31,22 +31,28 @@ function start() {
   let config = vscode.workspace.getConfiguration("foxdot");
   let command: string = config.get("pythonPath") || "python";
   foxDotProc = spawn(command, ["-m", "FoxDot", "-p"]);
-  foxDotProc.stdout.on("data", data => {
-    vscode.window.showInformationMessage(data.toString());
-  });
-  foxDotProc.stderr.on("data", data => {
-    vscode.window.showErrorMessage(data.toString());
-  });
-  foxDotProc.on("close", code => {
-    if (code) vscode.window.showErrorMessage(`FoxDot has exited: ${code}.`);
-    else vscode.window.showInformationMessage(`FoxDot has stopped.`);
-    foxDotStatus?.dispose();
-  });
+  foxDotProc.stdout.on("data", handleOutputData);
+  foxDotProc.stderr.on("data", handleErrorData);
+  foxDotProc.on("close", handleOnClose);
   vscode.window.showInformationMessage("FoxDot has started!");
   foxDotStatus = vscode.window.createStatusBarItem(StatusBarAlignment.Left, 10);
   foxDotStatus.text = "FoxDot >>";
   foxDotStatus.command = "foxdot.record";
   foxDotStatus.show();
+}
+
+function handleOutputData(data: any) {
+  vscode.window.showInformationMessage(data.toString());
+}
+
+function handleErrorData(data: any) {
+  vscode.window.showErrorMessage(data.toString());
+}
+
+function handleOnClose(code: number) {
+  if (code) vscode.window.showErrorMessage(`FoxDot has exited: ${code}.`);
+  else vscode.window.showInformationMessage(`FoxDot has stopped.`);
+  foxDotStatus?.dispose();
 }
 
 function stop() {
