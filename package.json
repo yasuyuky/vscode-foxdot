@@ -23,15 +23,15 @@
     "commands": [
       {
         "command": "foxdot.start",
-        "title": "Start FoxDot"
+        "title": "FoxDot: Start"
       },
       {
         "command": "foxdot.stop",
-        "title": "Stop FoxDot"
+        "title": "FoxDot: Stop"
       },
       {
         "command": "foxdot.restart",
-        "title": "Restart FoxDot"
+        "title": "FoxDot: Restart"
       },
       {
         "command": "foxdot.record",
@@ -43,7 +43,7 @@
       },
       {
         "command": "foxdot.sendSelection",
-        "title": "Send Region to FoxDot"
+        "title": "FoxDot: Send Selection"
       }
     ],
     "keybindings": [
