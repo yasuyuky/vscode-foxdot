@@ -54,7 +54,7 @@
     ],
     "configuration": [
       {
-        "title": "FoxDot Configuration",
+        "title": "FoxDot",
         "properties": {
           "foxdot.pythonPath": {
             "type": "string",
