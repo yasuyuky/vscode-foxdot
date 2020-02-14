@@ -3,12 +3,14 @@ import {
   TextEditor,
   Selection,
   StatusBarItem,
-  StatusBarAlignment
+  StatusBarAlignment,
+  OutputChannel
 } from "vscode";
 import { spawn, ChildProcess } from "child_process";
 
 let foxDotProc: ChildProcess;
 let foxDotStatus: StatusBarItem;
+let foxDotOutput: OutputChannel;
 
 export function activate(context: vscode.ExtensionContext) {
   let commands = new Map<string, (...args: any[]) => any>([
@@ -35,6 +37,8 @@ function start() {
   foxDotProc.stderr.on("data", handleErrorData);
   foxDotProc.on("close", handleOnClose);
   vscode.window.showInformationMessage("FoxDot has started!");
+  foxDotOutput = vscode.window.createOutputChannel("FoxDot");
+  foxDotOutput.show();
   foxDotStatus = vscode.window.createStatusBarItem(StatusBarAlignment.Left, 10);
   foxDotStatus.text = "FoxDot >>";
   foxDotStatus.command = "foxdot.record";
@@ -42,7 +46,7 @@ function start() {
 }
 
 function handleOutputData(data: any) {
-  vscode.window.showInformationMessage(data.toString());
+  foxDotOutput.appendLine(data.toString());
 }
 
 function handleErrorData(data: any) {
@@ -79,7 +83,7 @@ function stopRecording() {
 function sendSelection(editor: TextEditor) {
   let sel = editor.document.getText(editor.selection);
   foxDotProc.stdin.write(sel + "\n\n");
-  vscode.window.showInformationMessage(">>> " + sel);
+  foxDotOutput.appendLine(">>> " + sel);
   editor.selections = editor.selections.map(
     s => new Selection(s.active, s.active)
   );
