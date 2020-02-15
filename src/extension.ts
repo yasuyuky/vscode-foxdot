@@ -35,6 +35,13 @@ export function activate(context: vscode.ExtensionContext) {
   );
 }
 
+function startProcess(command: string) {
+  foxDotProc = spawn(command, ["-m", "FoxDot", "-p"]);
+  foxDotProc.stdout.on("data", handleOutputData);
+  foxDotProc.stderr.on("data", handleErrorData);
+  foxDotProc.on("close", handleOnClose);
+}
+
 function setupStatus() {
   foxDotStatus = vscode.window.createStatusBarItem(StatusBarAlignment.Left, 10);
   foxDotStatus.text = "FoxDot >>";
@@ -51,10 +58,7 @@ function start() {
   let config = vscode.workspace.getConfiguration("foxdot");
   let command: string = config.get("pythonPath") || "python";
   feedbackStyle = config.get("feedbackStyle") || FeedbackStyle.outputChannel;
-  foxDotProc = spawn(command, ["-m", "FoxDot", "-p"]);
-  foxDotProc.stdout.on("data", handleOutputData);
-  foxDotProc.stderr.on("data", handleErrorData);
-  foxDotProc.on("close", handleOnClose);
+  startProcess(command);
   vscode.window.showInformationMessage("FoxDot has started!");
   setupStatus();
   setupOutput();
