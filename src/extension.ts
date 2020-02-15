@@ -35,6 +35,13 @@ export function activate(context: vscode.ExtensionContext) {
   );
 }
 
+function setupStatus() {
+  foxDotStatus = vscode.window.createStatusBarItem(StatusBarAlignment.Left, 10);
+  foxDotStatus.text = "FoxDot >>";
+  foxDotStatus.command = "foxdot.record";
+  foxDotStatus.show();
+}
+
 function start() {
   let config = vscode.workspace.getConfiguration("foxdot");
   let command: string = config.get("pythonPath") || "python";
@@ -46,10 +53,7 @@ function start() {
   vscode.window.showInformationMessage("FoxDot has started!");
   foxDotOutput = vscode.window.createOutputChannel("FoxDot");
   foxDotOutput.show();
-  foxDotStatus = vscode.window.createStatusBarItem(StatusBarAlignment.Left, 10);
-  foxDotStatus.text = "FoxDot >>";
-  foxDotStatus.command = "foxdot.record";
-  foxDotStatus.show();
+  setupStatus();
 }
 
 function printFeedback(s: string) {
