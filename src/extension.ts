@@ -56,9 +56,8 @@ function setupOutput() {
 
 function start() {
   let config = vscode.workspace.getConfiguration("foxdot");
-  let command: string = config.get("pythonPath") || "python";
   feedbackStyle = config.get("feedbackStyle") || FeedbackStyle.outputChannel;
-  startProcess(command);
+  startProcess(config.get("pythonPath") || "python");
   setupStatus();
   setupOutput();
   vscode.window.showInformationMessage("FoxDot has started!");
