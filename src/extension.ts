@@ -8,9 +8,15 @@ import {
 } from "vscode";
 import { spawn, ChildProcess } from "child_process";
 
+enum FeedbackStyle {
+  outputChannel,
+  infomationMessage
+}
+
 let foxDotProc: ChildProcess;
 let foxDotStatus: StatusBarItem;
 let foxDotOutput: OutputChannel;
+let feedbackStyle: FeedbackStyle;
 
 export function activate(context: vscode.ExtensionContext) {
   let commands = new Map<string, (...args: any[]) => any>([
@@ -32,6 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
 function start() {
   let config = vscode.workspace.getConfiguration("foxdot");
   let command: string = config.get("pythonPath") || "python";
+  feedbackStyle = config.get("feedbackStyle") || FeedbackStyle.outputChannel;
   foxDotProc = spawn(command, ["-m", "FoxDot", "-p"]);
   foxDotProc.stdout.on("data", handleOutputData);
   foxDotProc.stderr.on("data", handleErrorData);
@@ -43,6 +50,16 @@ function start() {
   foxDotStatus.text = "FoxDot >>";
   foxDotStatus.command = "foxdot.record";
   foxDotStatus.show();
+}
+
+function printFeedback(s: string) {
+  switch (feedbackStyle) {
+    case FeedbackStyle.infomationMessage:
+      vscode.window.showInformationMessage(s);
+      break;
+    default:
+      foxDotOutput.appendLine(s);
+  }
 }
 
 function handleOutputData(data: any) {
