@@ -42,6 +42,11 @@ function setupStatus() {
   foxDotStatus.show();
 }
 
+function setupOutput() {
+  foxDotOutput = vscode.window.createOutputChannel("FoxDot");
+  foxDotOutput.show();
+}
+
 function start() {
   let config = vscode.workspace.getConfiguration("foxdot");
   let command: string = config.get("pythonPath") || "python";
@@ -51,9 +56,8 @@ function start() {
   foxDotProc.stderr.on("data", handleErrorData);
   foxDotProc.on("close", handleOnClose);
   vscode.window.showInformationMessage("FoxDot has started!");
-  foxDotOutput = vscode.window.createOutputChannel("FoxDot");
-  foxDotOutput.show();
   setupStatus();
+  setupOutput();
 }
 
 function printFeedback(s: string) {
