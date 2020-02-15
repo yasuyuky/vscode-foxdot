@@ -59,9 +59,9 @@ function start() {
   let command: string = config.get("pythonPath") || "python";
   feedbackStyle = config.get("feedbackStyle") || FeedbackStyle.outputChannel;
   startProcess(command);
-  vscode.window.showInformationMessage("FoxDot has started!");
   setupStatus();
   setupOutput();
+  vscode.window.showInformationMessage("FoxDot has started!");
 }
 
 function printFeedback(s: string) {
