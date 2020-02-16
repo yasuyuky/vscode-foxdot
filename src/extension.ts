@@ -28,11 +28,10 @@ export function activate(context: vscode.ExtensionContext) {
     ["foxdot.stopRecording", stopRecording]
   ]);
 
-  commands.forEach((func, key) =>
+  for (const [key, func] of commands)
     context.subscriptions.push(
       vscode.commands.registerTextEditorCommand(key, func)
-    )
-  );
+    );
 }
 
 function startProcess(command: string) {
