@@ -12,8 +12,7 @@
   ],
   "icon": "images/vscode-foxdot.png",
   "activationEvents": [
-    "onCommand:foxdot.start",
-    "onCommand:foxdot.restart"
+    "onCommand:foxdot.start"
   ],
   "repository": {
     "type": "git",
