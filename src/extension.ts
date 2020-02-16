@@ -37,8 +37,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 function startProcess(command: string) {
   foxDotProc = spawn(command, ["-m", "FoxDot", "-p"]);
-  foxDotProc.stdout.on("data", handleOutputData);
-  foxDotProc.stderr.on("data", handleErrorData);
+  foxDotProc.stdout?.on("data", handleOutputData);
+  foxDotProc.stderr?.on("data", handleErrorData);
   foxDotProc.on("close", handleOnClose);
 }
 
@@ -100,13 +100,13 @@ function restart() {
 }
 
 function record() {
-  foxDotProc.stdin.write("Server.record()\n\n");
+  foxDotProc.stdin?.write("Server.record()\n\n");
   foxDotStatus.command = "foxdot.stopRecording";
   vscode.window.showInformationMessage("Start Recording");
 }
 
 function stopRecording() {
-  foxDotProc.stdin.write("Server.stopRecording()\n\n");
+  foxDotProc.stdin?.write("Server.stopRecording()\n\n");
   foxDotStatus.command = "foxdot.record";
   vscode.window.showInformationMessage("Stop Recording");
 }
@@ -115,7 +115,7 @@ function sendSelections(editor: TextEditor) {
   for (const s of editor.selections) {
     let t = editor.document.getText(s);
     printFeedback(">>> " + t);
-    foxDotProc.stdin.write(t + "\n\n");
+    foxDotProc.stdin?.write(t + "\n\n");
   }
   editor.selections = editor.selections.map(
     s => new Selection(s.active, s.active)
