@@ -5,7 +5,7 @@ vscode extension for [FoxDot](http://foxdot.org)
 ## Features
 
 - `foxdot.start`
-- `foxdot.sendSelection`
+- `foxdot.sendSelections`
 - `foxdot.stop`
 
 ## Requirements

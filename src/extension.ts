@@ -21,7 +21,7 @@ let feedbackStyle: FeedbackStyle;
 export function activate(context: vscode.ExtensionContext) {
   let commands = new Map<string, (...args: any[]) => any>([
     ["foxdot.start", start],
-    ["foxdot.sendSelection", sendSelection],
+    ["foxdot.sendSelections", sendSelections],
     ["foxdot.stop", stop],
     ["foxdot.restart", restart],
     ["foxdot.record", record],
@@ -108,10 +108,12 @@ function stopRecording() {
   vscode.window.showInformationMessage("Stop Recording");
 }
 
-function sendSelection(editor: TextEditor) {
-  let sel = editor.document.getText(editor.selection);
-  foxDotProc.stdin.write(sel + "\n\n");
-  printFeedback(">>> " + sel);
+function sendSelections(editor: TextEditor) {
+  for (const s of editor.selections) {
+    let t = editor.document.getText(s);
+    printFeedback(">>> " + t);
+    foxDotProc.stdin.write(t + "\n\n");
+  }
   editor.selections = editor.selections.map(
     s => new Selection(s.active, s.active)
   );

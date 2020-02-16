@@ -43,14 +43,14 @@
         "title": "FoxDot: Stop Recording"
       },
       {
-        "command": "foxdot.sendSelection",
+        "command": "foxdot.sendSelections",
         "title": "FoxDot: Send Selection"
       }
     ],
     "keybindings": [
       {
         "key": "cmd+shift+enter",
-        "command": "foxdot.sendSelection"
+        "command": "foxdot.sendSelections"
       }
     ],
     "configuration": [
