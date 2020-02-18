@@ -44,6 +44,10 @@
       {
         "command": "foxdot.sendSelections",
         "title": "FoxDot: Send Selection"
+      },
+      {
+        "command": "foxdot.openRecDir",
+        "title": "FoxDot: Open Recording Directory"
       }
     ],
     "keybindings": [

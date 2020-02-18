@@ -26,7 +26,8 @@ export function activate(context: vscode.ExtensionContext) {
     ["foxdot.stop", stop],
     ["foxdot.restart", restart],
     ["foxdot.record", record],
-    ["foxdot.stopRecording", stopRecording]
+    ["foxdot.stopRecording", stopRecording],
+    ["foxdot.openRecDir", openRecDir]
   ]);
 
   for (const [key, func] of commands)
@@ -60,6 +61,16 @@ function setOutputHook(key: string, handler: (_: string) => any) {
     handler(s.slice(key.length));
     outputHooks.delete(key);
   });
+}
+
+function openRecDir() {
+  setOutputHook("recdir: ", handleRecDir);
+  foxDotProc.stdin?.write("print('recdir: '+Settings.RECORDING_DIR)\n\n");
+}
+
+function handleRecDir(p: string) {
+  let recUri = vscode.Uri.file(p.trim());
+  vscode.env.openExternal(recUri);
 }
 
 function start() {
