@@ -55,6 +55,13 @@ function setupOutput() {
   foxDotOutput.show();
 }
 
+function setOutputHook(key: string, handler: (_: string) => any) {
+  outputHooks.set(key, s => {
+    handler(s.slice(key.length));
+    outputHooks.delete(key);
+  });
+}
+
 function start() {
   let config = vscode.workspace.getConfiguration("foxdot");
   feedbackStyle = config.get("feedbackStyle") || FeedbackStyle.outputChannel;
