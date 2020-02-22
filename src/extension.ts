@@ -15,6 +15,7 @@ enum FeedbackStyle {
 
 let foxDotProc: ChildProcess;
 let foxDotStatus: StatusBarItem;
+let foxDotBeat: StatusBarItem;
 let foxDotOutput: OutputChannel;
 let feedbackStyle: FeedbackStyle;
 let outputHooks: Map<string, (s: string) => any> = new Map();
@@ -48,6 +49,10 @@ function setupStatus() {
   foxDotStatus.text = "FoxDot >>";
   foxDotStatus.command = "foxdot.record";
   foxDotStatus.show();
+  foxDotBeat = vscode.window.createStatusBarItem(StatusBarAlignment.Right, 10);
+  foxDotBeat.text = "";
+  foxDotBeat.show();
+  showBeat();
 }
 
 function setupOutput() {
@@ -70,6 +75,24 @@ function openRecDir() {
 function handleRecDir(p: string) {
   let recUri = vscode.Uri.file(p.trim());
   vscode.env.openExternal(recUri);
+}
+
+const sleep = (msec: number) =>
+  new Promise(resolve => setTimeout(resolve, msec));
+
+async function showBeat() {
+  while (!foxDotProc.killed) {
+    setOutputHook("beat:", handleBeat);
+    foxDotProc.stdin?.write(
+      "print('beat:', int(Clock.now() % Clock.bars()))\n\n"
+    );
+    await sleep(100);
+  }
+}
+
+function handleBeat(b: string) {
+  let n = parseInt(b);
+  foxDotBeat.text = "_".repeat(n) + ">" + "_".repeat(3 - n);
 }
 
 function start() {
@@ -105,6 +128,7 @@ function handleOnClose(code: number) {
   if (code) vscode.window.showErrorMessage(`FoxDot has exited: ${code}.`);
   else vscode.window.showInformationMessage(`FoxDot has stopped.`);
   foxDotStatus?.dispose();
+  foxDotBeat?.dispose();
 }
 
 function stop() {
