@@ -57,7 +57,7 @@ function setupOutput() {
 }
 
 function setOutputHook(key: string, handler: (_: string) => any) {
-  outputHooks.set(key, s => {
+  outputHooks?.set(key, s => {
     handler(s.slice(key.length));
     outputHooks.delete(key);
   });
