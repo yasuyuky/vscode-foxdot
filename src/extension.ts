@@ -17,7 +17,7 @@ let foxDotProc: ChildProcess;
 let foxDotStatus: StatusBarItem;
 let foxDotOutput: OutputChannel;
 let feedbackStyle: FeedbackStyle;
-let outputHooks: Map<string, (s: string) => any>;
+let outputHooks: Map<string, (s: string) => any> = new Map();
 
 export function activate(context: vscode.ExtensionContext) {
   let commands = new Map<string, (...args: any[]) => any>([
@@ -51,7 +51,6 @@ function setupStatus() {
 }
 
 function setupOutput() {
-  outputHooks = new Map();
   foxDotOutput = vscode.window.createOutputChannel("FoxDot");
   foxDotOutput.show();
 }
