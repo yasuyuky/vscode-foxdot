@@ -137,9 +137,9 @@ function stop() {
   foxDotProc.kill();
 }
 
-function restart() {
+function restart(editor: TextEditor) {
   stop();
-  start();
+  start(editor);
 }
 
 function record() {
