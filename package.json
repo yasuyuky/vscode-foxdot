@@ -56,8 +56,8 @@
     ],
     "keybindings": [
       {
-        "key": "cmd+shift+enter",
-        "command": "foxdot.sendSelections"
+        "key": "cmd+enter",
+        "command": "foxdot.send"
       }
     ],
     "configuration": [
@@ -99,5 +99,10 @@
     "tslint": "6.0.0",
     "typescript": "3.7.5",
     "vscode-test": "1.3.0"
+  },
+  "__metadata": {
+    "id": "4a3cb374-bcf1-4ff3-b1c6-745154c8c693",
+    "publisherDisplayName": "yasuyuky",
+    "publisherId": "26c87d04-897d-45f2-93e7-eaa8a02e44b1"
   }
 }
