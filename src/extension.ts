@@ -152,6 +152,18 @@ function stopRecording() {
   vscode.window.showInformationMessage("Stop Recording");
 }
 
+function selectCursorsContexts(editor: TextEditor) {
+  editor.selections = editor.selections.map(s => {
+    let [d, sl, el] = [editor.document, s.start.line, s.end.line];
+    let r = d.lineAt(sl).range.union(d.lineAt(el).range);
+    for (let l = sl; l >= 0 && !d.lineAt(l).isEmptyOrWhitespace; l--)
+      r = r.union(d.lineAt(l).range);
+    for (let l = el; l < d.lineCount && !d.lineAt(l).isEmptyOrWhitespace; l++)
+      r = r.union(d.lineAt(l).range);
+    return new Selection(r.start, r.end);
+  });
+}
+
 function sendSelections(editor: TextEditor) {
   for (const s of editor.selections) {
     let t = editor.document.getText(s);
