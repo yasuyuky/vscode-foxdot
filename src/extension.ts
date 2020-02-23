@@ -58,7 +58,7 @@ function setupStatus() {
 
 function setupOutput() {
   foxDotOutput = vscode.window.createOutputChannel("FoxDot");
-  foxDotOutput.show();
+  foxDotOutput.show(true);
 }
 
 function setOutputHook(key: string, handler: (_: string) => any) {
