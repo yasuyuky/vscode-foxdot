@@ -23,6 +23,7 @@ let outputHooks: Map<string, (s: string) => any> = new Map();
 export function activate(context: vscode.ExtensionContext) {
   let commands = new Map<string, (...args: any[]) => any>([
     ["foxdot.start", start],
+    ["foxdot.send", send],
     ["foxdot.sendSelections", sendSelections],
     ["foxdot.stop", stop],
     ["foxdot.restart", restart],
@@ -162,6 +163,11 @@ function selectCursorsContexts(editor: TextEditor) {
       r = r.union(d.lineAt(l).range);
     return new Selection(r.start, r.end);
   });
+}
+
+function send(editor: TextEditor) {
+  selectCursorsContexts(editor);
+  sendSelections(editor);
 }
 
 function sendSelections(editor: TextEditor) {

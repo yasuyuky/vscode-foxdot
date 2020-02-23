@@ -42,6 +42,10 @@
         "title": "FoxDot: Stop Recording"
       },
       {
+        "command": "foxdot.send",
+        "title": "FoxDot: Send"
+      },
+      {
         "command": "foxdot.sendSelections",
         "title": "FoxDot: Send Selection"
       },
