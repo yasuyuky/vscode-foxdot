@@ -96,8 +96,9 @@ function handleBeat(b: string) {
   foxDotBeat.text = "_".repeat(n) + ">" + "_".repeat(3 - n);
 }
 
-function start() {
+function start(editor: TextEditor) {
   let config = vscode.workspace.getConfiguration("foxdot");
+  vscode.languages.setTextDocumentLanguage(editor.document, "python");
   feedbackStyle = config.get("feedbackStyle") || FeedbackStyle.outputChannel;
   startProcess(config.get("pythonPath") || "python");
   setupStatus();
