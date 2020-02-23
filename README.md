@@ -18,7 +18,7 @@ vscode extension for [FoxDot](http://foxdot.org)
 ## Extension Settings
 
 - `foxdot.pythonPath`
-  - Path of Python
+  - Python Path with FoxDot installed (Optional)
 
 ## Release Notes
 
