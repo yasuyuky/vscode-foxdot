@@ -69,6 +69,11 @@
             "default": null,
             "description": "Python Path with FoxDot installed (Optional)"
           },
+          "foxdot.venvPath": {
+            "type": "string",
+            "default": null,
+            "description": "Virtual Environment Path for FoxDot (Optional)"
+          },
           "foxdot.feedbackStyle": {
             "type": "string",
             "default": "outputChannel",
