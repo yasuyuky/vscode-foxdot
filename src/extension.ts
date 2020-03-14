@@ -7,6 +7,8 @@ import {
   OutputChannel
 } from "vscode";
 import { spawn, ChildProcess } from "child_process";
+import { existsSync } from "fs";
+import * as path from "path";
 
 enum FeedbackStyle {
   outputChannel,
@@ -96,11 +98,23 @@ function handleBeat(b: string) {
   foxDotBeat.text = "_".repeat(n) + ">" + "_".repeat(3 - n);
 }
 
+function selectPython(config: vscode.WorkspaceConfiguration): string {
+  let rootPath = vscode.workspace.rootPath || "";
+  let venvPath = path.join(rootPath, config.get<string>("venvPath") || "");
+  let venvPython = path.join(venvPath, "bin", "python");
+  let directPath = config.get<string>("pythonPath") || "";
+  if (venvPath && existsSync(venvPython)) return venvPython;
+  else if (directPath) return directPath;
+  return "python";
+}
+
 function start(editor: TextEditor) {
   let config = vscode.workspace.getConfiguration("foxdot");
   vscode.languages.setTextDocumentLanguage(editor.document, "python");
   feedbackStyle = config.get("feedbackStyle") || FeedbackStyle.outputChannel;
-  startProcess(config.get("pythonPath") || "python");
+  let pythonPath = selectPython(config);
+  vscode.window.showInformationMessage("Using: " + pythonPath);
+  startProcess(pythonPath);
   setupStatus();
   setupOutput();
   vscode.window.showInformationMessage("FoxDot has started!");
