@@ -6,6 +6,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+- Add a function to load the virtual env
+- Updated some dependencies
+
 ## [0.0.2] - 2020-02-24
 
 - Added `send` command
