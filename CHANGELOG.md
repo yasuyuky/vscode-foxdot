@@ -6,7 +6,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-- Add a function to load the virtual env
+## [0.0.3] - 2020-03-25
+
+- Added a function to load the virtual env
 - Updated some dependencies
 
 ## [0.0.2] - 2020-02-24
