@@ -109,6 +109,7 @@ function selectPython(config: vscode.WorkspaceConfiguration): string {
 }
 
 function start(editor: TextEditor) {
+  if (foxDotProc && !foxDotProc.killed) return;
   let config = vscode.workspace.getConfiguration("foxdot");
   vscode.languages.setTextDocumentLanguage(editor.document, "python");
   feedbackStyle = config.get("feedbackStyle") || FeedbackStyle.outputChannel;
