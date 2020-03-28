@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+- Prevent duplicate launches
+
 ## [0.0.3] - 2020-03-25
 
 - Added a function to load the virtual env
