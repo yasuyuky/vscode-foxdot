@@ -106,10 +106,5 @@
     "eslint": "^6.8.0",
     "typescript": "3.8.3",
     "vscode-test": "1.3.0"
-  },
-  "__metadata": {
-    "id": "4a3cb374-bcf1-4ff3-b1c6-745154c8c693",
-    "publisherDisplayName": "yasuyuky",
-    "publisherId": "26c87d04-897d-45f2-93e7-eaa8a02e44b1"
   }
 }
