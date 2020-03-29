@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.4] - 2020-03-30
+
 - Removed the restart command
 - Prevented duplicate launches
 
