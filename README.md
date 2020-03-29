@@ -4,10 +4,11 @@ vscode extension for [FoxDot](http://foxdot.org)
 
 ## Features
 
+### Commands
+
 - `foxdot.start`
 - `foxdot.send`
 - `foxdot.stop`
-- `foxdot.restart`
 - `foxdot.record`
 - `foxdot.stopRecording`
 
