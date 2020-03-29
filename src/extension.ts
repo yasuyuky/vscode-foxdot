@@ -28,7 +28,6 @@ export function activate(context: vscode.ExtensionContext) {
     ["foxdot.send", send],
     ["foxdot.sendSelections", sendSelections],
     ["foxdot.stop", stop],
-    ["foxdot.restart", restart],
     ["foxdot.record", record],
     ["foxdot.stopRecording", stopRecording],
     ["foxdot.openRecDir", openRecDir]
@@ -150,11 +149,6 @@ function handleOnClose(code: number) {
 
 function stop() {
   foxDotProc.kill();
-}
-
-function restart(editor: TextEditor) {
-  stop();
-  start(editor);
 }
 
 function record() {
