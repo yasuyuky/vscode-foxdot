@@ -6,7 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-- Prevent duplicate launches
+- Removed the restart command
+- Prevented duplicate launches
 
 ## [0.0.3] - 2020-03-25
 
