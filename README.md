@@ -2,6 +2,8 @@
 
 vscode extension for [FoxDot](http://foxdot.org)
 
+[![CI Status](https://github.com/yasuyuky/vscode-foxdot/workflows/build/badge.svg)](https://github.com/yasuyuky/vscode-foxdot/actions)
+
 ## Features
 
 ### Commands
