@@ -4,7 +4,7 @@ import {
   Selection,
   StatusBarItem,
   StatusBarAlignment,
-  OutputChannel
+  OutputChannel,
 } from "vscode";
 import { spawn, ChildProcess } from "child_process";
 import { existsSync } from "fs";
@@ -13,7 +13,7 @@ import * as util from "util";
 
 enum FeedbackStyle {
   outputChannel,
-  infomationMessage
+  infomationMessage,
 }
 
 let foxDotProc: ChildProcess;
@@ -31,7 +31,7 @@ export function activate(context: vscode.ExtensionContext) {
     ["foxdot.stop", stop],
     ["foxdot.record", record],
     ["foxdot.stopRecording", stopRecording],
-    ["foxdot.openRecDir", openRecDir]
+    ["foxdot.openRecDir", openRecDir],
   ]);
 
   for (const [key, func] of commands)
@@ -64,7 +64,7 @@ function setupOutput() {
 }
 
 function setOutputHook(key: string, handler: (_: string) => any) {
-  outputHooks?.set(key, s => {
+  outputHooks?.set(key, (s) => {
     handler(s.slice(key.length));
     outputHooks.delete(key);
   });
@@ -164,7 +164,7 @@ function stopRecording() {
 }
 
 function selectCursorsContexts(editor: TextEditor) {
-  editor.selections = editor.selections.map(s => {
+  editor.selections = editor.selections.map((s) => {
     let [d, sl, el] = [editor.document, s.start.line, s.end.line];
     let r = d.lineAt(sl).range.union(d.lineAt(el).range);
     for (let l = sl; l >= 0 && !d.lineAt(l).isEmptyOrWhitespace; l--)
@@ -187,7 +187,7 @@ function sendSelections(editor: TextEditor) {
     foxDotProc.stdin?.write(t + "\n\n");
   }
   editor.selections = editor.selections.map(
-    s => new Selection(s.active, s.active)
+    (s) => new Selection(s.active, s.active)
   );
 }
 
