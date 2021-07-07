@@ -9,6 +9,7 @@ import {
 import { spawn, ChildProcess } from "child_process";
 import { existsSync } from "fs";
 import * as path from "path";
+import * as util from "util";
 
 enum FeedbackStyle {
   outputChannel,
@@ -79,8 +80,7 @@ function handleRecDir(p: string) {
   vscode.env.openExternal(recUri);
 }
 
-const sleep = (msec: number) =>
-  new Promise(resolve => setTimeout(resolve, msec));
+const sleep = (msec: number) => util.promisify(setTimeout)(msec);
 
 async function showBeat() {
   while (!foxDotProc.killed) {
