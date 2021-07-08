@@ -94,7 +94,7 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "devDependencies": {
-    "@types/mocha": "8.2.2",
+    "@types/mocha": "8.2.3",
     "@types/node": "16.0.1",
     "@types/vscode": "1.57.1",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
