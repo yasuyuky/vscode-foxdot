@@ -53,7 +53,8 @@
     "keybindings": [
       {
         "key": "cmd+enter",
-        "command": "foxdot.send"
+        "command": "foxdot.send",
+        "when": "editorTextFocus"
       }
     ],
     "configuration": [
