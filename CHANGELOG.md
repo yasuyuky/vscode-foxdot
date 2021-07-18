@@ -6,6 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [0.0.5] - 2020-07-18
+
 - Added GitHub actions workflow
 - Improve keybindings
 
