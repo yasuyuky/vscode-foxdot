@@ -7,6 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [Unreleased]
 
 - Added GitHub actions workflow
+- Improve keybindings
 
 ## [0.0.4] - 2020-03-30
 
