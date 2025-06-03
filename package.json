@@ -98,7 +98,7 @@
     "@types/mocha": "10.0.10",
     "@types/node": "22.15.29",
     "@types/vscode": "1.100.0",
-    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/eslint-plugin": "^8.33.1",
     "@typescript-eslint/parser": "^8.33.1",
     "eslint": "^9.28.0",
     "typescript": "5.8.3",
