@@ -100,7 +100,7 @@
     "@types/vscode": "1.116.0",
     "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^8.58.2",
-    "eslint": "^10.2.0",
+    "eslint": "^10.2.1",
     "typescript": "6.0.3",
     "vscode-test": "1.6.1"
   }
