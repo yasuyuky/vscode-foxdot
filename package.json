@@ -99,7 +99,7 @@
     "@types/node": "26.6.6",
     "@types/vscode": "1.145.0",
     "@typescript-eslint/eslint-plugin": "^8.72.1",
-    "@typescript-eslint/parser": "^8.72.1",
+    "@typescript-eslint/parser": "^8.72.2",
     "eslint": "^10.14.0",
     "typescript": "7.0.2",
     "vscode-test": "1.6.1"
